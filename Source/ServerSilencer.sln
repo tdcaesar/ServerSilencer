@@ -2,6 +2,12 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{F5C432B5-A2F0-499B-ADEF-2418D6F0C6A4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "..\Tests\IntegrationTests\IntegrationTests.csproj", "{614F8C5B-39E2-408E-8BF4-CF36A6386D0A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D365C021-150F-40D2-B1F0-A1B762D52756}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceUnitTests", "..\Tests\ServiceUnitTests\ServiceUnitTests.csproj", "{F505957B-93E1-4822-BB2E-669CFAD12FBC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +18,17 @@ Global
 		{F5C432B5-A2F0-499B-ADEF-2418D6F0C6A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5C432B5-A2F0-499B-ADEF-2418D6F0C6A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5C432B5-A2F0-499B-ADEF-2418D6F0C6A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{614F8C5B-39E2-408E-8BF4-CF36A6386D0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{614F8C5B-39E2-408E-8BF4-CF36A6386D0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{614F8C5B-39E2-408E-8BF4-CF36A6386D0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{614F8C5B-39E2-408E-8BF4-CF36A6386D0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F505957B-93E1-4822-BB2E-669CFAD12FBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F505957B-93E1-4822-BB2E-669CFAD12FBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F505957B-93E1-4822-BB2E-669CFAD12FBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F505957B-93E1-4822-BB2E-669CFAD12FBC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{614F8C5B-39E2-408E-8BF4-CF36A6386D0A} = {D365C021-150F-40D2-B1F0-A1B762D52756}
+		{F505957B-93E1-4822-BB2E-669CFAD12FBC} = {D365C021-150F-40D2-B1F0-A1B762D52756}
 	EndGlobalSection
 EndGlobal

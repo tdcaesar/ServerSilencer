@@ -1,10 +1,10 @@
-namespace DigitalCaesar.ServerSilencer.Service;
+namespace DigitalCaesar.ServerSilencer.Service.Application;
 
 public class ApplicationLogger
 {
     private const string StartMessage = "Log Service started at: {time}.";
-    private const string NormalStopMessage = "Log Service stopped at {time} after running for {duration} days.";
-    private const string DurationFormat = "0:dd\\.hh\\:mm\\:ss";
+    private const string NormalStopMessage = "Log Service stopped at {0} after running for {1} days.";
+    private const string DurationFormat = @"dd\.hh\:mm\:ss";
     private readonly ILogger? _logger;
     private DateTime _logStartTime;
 

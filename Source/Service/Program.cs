@@ -1,4 +1,5 @@
 using DigitalCaesar.ServerSilencer.Service;
+using DigitalCaesar.ServerSilencer.Service.Application;
 
 IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureServices(

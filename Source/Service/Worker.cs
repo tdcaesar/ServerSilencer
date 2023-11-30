@@ -1,22 +1,26 @@
+using DigitalCaesar.ServerSilencer.Service.Application;
+
 namespace DigitalCaesar.ServerSilencer.Service;
 
 public class Worker : BackgroundService
 {
-    private readonly ApplicationLogger _logger;
-    private readonly int _pollingIntervalInMilliseconds;
+    private readonly ServiceController _service;
 
-    public Worker(ILogger<Worker> logger, ApplicationSettings settings)
+    public Worker(ILogger<Worker> logger, ServiceController serviceController)
     {
-        _logger = new(logger);
-        _pollingIntervalInMilliseconds = settings.PollingIntervalInSeconds * 1000;
+        _service = serviceController;
     }
 
-    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    protected override async Task ExecuteAsync(CancellationToken cancellationToken)
     {
-        while (!stoppingToken.IsCancellationRequested)
+        _service.Start();
+        
+        while (!cancellationToken.IsCancellationRequested)
         {
-            _logger.LogStart();
-            await Task.Delay(_pollingIntervalInMilliseconds, stoppingToken);
+            await _service.Run(cancellationToken);
+            await _service.Wait(cancellationToken);
         }
+
+        _service.Stop();
     }
 }
