@@ -1,14 +1,31 @@
 namespace DigitalCaesar.ServerSilencer.Service.Sensors;
 
+[Serializable]
 public class SensorIdException : Exception
 {
-    public SensorIdException(int value) 
-        : base(String.Format($"The Sensor Id '{value}' but be between 0 (0x00) and 255 (0xff)."))
+    public SensorIdException() : base("There was a problem with the Sensor Id.")
+    {
+    }
+    public SensorIdException(string message) 
+        : base(message)
+    {
+    }
+    public SensorIdException(string message, Exception inner)
+        : base(message, inner)
     {
     }
 
-    public SensorIdException()
-        : base(string.Format($"The Sensor Id cannot be null or empty."))
+    public static SensorIdException ThrowOutOfRangeException(int value, int minimum, int maximum)
     {
+        string minimumInHex = string.Format($"0x{minimum:X2}");
+        string maximumInHex = string.Format($"0x{maximum:X2}");
+        string message = string.Format($"The Sensor Id '{value}' but be between {minimum} ({minimumInHex}) and {maximum} ({maximumInHex}).");
+        return new SensorIdException(message);
+    }
+
+    public static SensorIdException ThrowNullException()    
+    {
+        string message = string.Format($"The Sensor Id cannot be null or empty.");
+        return new SensorIdException(message);
     }
 }

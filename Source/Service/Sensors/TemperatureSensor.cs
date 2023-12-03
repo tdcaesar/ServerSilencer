@@ -17,7 +17,7 @@ public class TemperatureSensor
         }
 
         if (settings.Minimum > settings.Maximum)
-            throw new TemperatureSensorException(Minimum, Maximum);
+            throw TemperatureSensorException.ThrowOutOfRangeException(Minimum, Maximum);
         
         Minimum = settings.Minimum;
         Maximum = settings.Maximum;

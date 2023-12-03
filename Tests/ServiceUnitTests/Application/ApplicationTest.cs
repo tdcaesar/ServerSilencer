@@ -28,6 +28,7 @@ public class ApplicationTest
     [Fact]
     public void ConstructorTest()
     {
+        // Arrange
         var config = new ConfigurationBuilder()
             .SetBasePath(AppContext.BaseDirectory)
             .AddJsonFile(SettingsFile, false, true)
@@ -35,39 +36,71 @@ public class ApplicationTest
 
         config.GetSection(SettingsSection);
         
+        // Act
         ServiceController service = new(
             new Logger<ServiceController>(new NullLoggerFactory()), 
             new ApplicationSettings());
 
+        // Assert
         service.Should().NotBeNull();
     }
 
     [Fact]
-    public void MethodStartTest()
+    public void Method_Start_Test()
     {
+        // Arrange
         ServiceController service = GetTestApplication();
         
-        service.Start();
+        // Act
+        var result = service.Start();
+
+        // Assert
+        result.Successful.Should().BeTrue();
     }
     [Fact(Skip = "No Need to wait")]
-    public async Task MethodWaitTest()
+    public async Task Method_Wait_Test()
     {
         ServiceController service = GetTestApplication();
         
         await service.Wait(new CancellationToken());
     }
     [Fact]
-    public void MethodStopTest()
+    public void Method_Stop_Test()
     {
+        // Arrange
         ServiceController service = GetTestApplication();
         
-        service.Stop();
+        // Act
+        var result = service.Stop();
+
+        // Assert
+        result.Successful.Should().BeTrue();
     }
-    [Fact(Skip = "save for integration")]
-    public async Task MethodRunTest()
+    [Fact]
+    public async Task Method_Run_Test()
     {
+        // Arrange
         ServiceController service = GetTestApplication();
         
-        await service.Run(new CancellationToken());
+        // Act
+        var result = await service.Run(new CancellationToken());
+
+        // Assert
+        result.Successful.Should().BeTrue();
+    }
+    [Fact]
+    public async Task Method_Run_WithCancellation_Test()
+    {
+        // Arrange
+        CancellationTokenSource cts = new();
+        cts.CancelAfter(0);
+        CancellationToken token = cts.Token;
+        ServiceController service = GetTestApplication();
+
+        // Act
+        var result = await service.Run(token);
+
+        // Assert
+        token.IsCancellationRequested.Should().BeTrue();
     }
 }

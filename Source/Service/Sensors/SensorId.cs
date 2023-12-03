@@ -1,3 +1,5 @@
+using DigitalCaesar.ServerSilencer.Service.Converters;
+
 namespace DigitalCaesar.ServerSilencer.Service.Sensors;
 
 public class SensorId
@@ -11,12 +13,12 @@ public class SensorId
         init
         {
             if (value is < Minimum or > Maximum)
-                throw new SensorIdException(value);
+                throw SensorIdException.ThrowOutOfRangeException(value, Minimum, Maximum);
             _value = value;
         }
     }
 
-    private string ValueInHex => string.Format($"{_value:X2}h");
+    private string ValueInHex => HexConverter.ToHexId(_value); 
 
     public static implicit operator int(SensorId id) => id.Value;
     public static implicit operator string(SensorId id) => id.ValueInHex;
@@ -26,16 +28,9 @@ public class SensorId
     public SensorId(string valueInHex)
     {
         if (string.IsNullOrWhiteSpace(valueInHex))
-            throw new SensorIdException();
+            throw SensorIdException.ThrowNullException();
         
-        bool hasPrefix = valueInHex.StartsWith("0x");
-        bool hasSuffix = valueInHex.EndsWith("h");
-        int start = hasPrefix ? 2 : 0;
-        int end = hasSuffix ? valueInHex.Length - 1 : valueInHex.Length;
-        int length = end - start;
-        
-        string trimmedValueInHex = valueInHex.Substring(start, length);
-        Value = int.Parse(trimmedValueInHex, System.Globalization.NumberStyles.HexNumber);
+        Value = HexConverter.FromHex(valueInHex);
     }
 
     public SensorId(int value)

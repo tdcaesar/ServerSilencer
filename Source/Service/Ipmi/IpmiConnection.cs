@@ -11,7 +11,7 @@ public class IpmiConnection
         {
             IpmiMode.Local => "",
             IpmiMode.Remote => string.Format(ArgumentString, settings.Host, settings.User, settings.Password),
-            _ => throw new IpmiConnectionException(settings.Mode.ToString())
+            _ => throw IpmiConnectionException.ThrowModeNotSupported(settings.Mode.ToString())
         };
     }
     public static implicit operator string(IpmiConnection connection) => connection.Value;

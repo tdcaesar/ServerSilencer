@@ -1,3 +1,5 @@
+using DigitalCaesar.Results;
+
 namespace DigitalCaesar.ServerSilencer.Service.Application;
 
 public class ServiceController
@@ -11,9 +13,10 @@ public class ServiceController
         _pollingIntervalInMilliseconds = settings.PollingIntervalInSeconds * 1000;
     }
 
-    public void Start()
+    public Result Start()
     {
         _logger.LogStart();
+        return true;
     }
 
     public async Task<bool> Wait(CancellationToken cancellationToken)
@@ -22,12 +25,13 @@ public class ServiceController
         return true;
     }
 
-    public void Stop()
+    public Result Stop()
     {
         _logger.LogStopNormal();
+        return true;
     }
 
-    public async Task Run(CancellationToken cancellationToken)
+    public async Task<Result> Run(CancellationToken cancellationToken)
     {
         // Retrieve Temperatures
         // Check if Automated Control
@@ -39,5 +43,6 @@ public class ServiceController
         //  TemperatureSensor
         //   ID
         //   Type
+        return true;
     }
 }
