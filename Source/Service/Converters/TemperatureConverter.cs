@@ -3,7 +3,7 @@ using DigitalCaesar.Results;
 
 namespace DigitalCaesar.ServerSilencer.Service.Converters;
 
-public class TemperatureConverter
+public static class TemperatureConverter
 {
     public static Result<TemperatureValue> To(TemperatureScale fromScale, int temperature, TemperatureScale toScale)
     {
@@ -33,8 +33,7 @@ public class TemperatureConverter
             TemperatureScale.Fahrenheit => scale switch
             {
                 TemperatureScale.Celsius => TemperatureValue.Create(
-                    ToCelsiusFromFahrenheit(temperature), 
-                    TemperatureScale.Celsius),
+                    ToCelsiusFromFahrenheit(temperature)),
                 TemperatureScale.Fahrenheit => temperature,
                 TemperatureScale.Kelvin => TemperatureValue.Create(
                     ToKelvinFromFahrenheit(temperature), 
@@ -44,8 +43,7 @@ public class TemperatureConverter
             TemperatureScale.Kelvin => scale switch
             {
                 TemperatureScale.Celsius => TemperatureValue.Create(
-                    ToCelsiusFromKelvin(temperature), 
-                    TemperatureScale.Celsius),
+                    ToCelsiusFromKelvin(temperature)),
                 TemperatureScale.Fahrenheit => TemperatureValue.Create(
                     ToFahrenheitFromKelvin(temperature), 
                     TemperatureScale.Fahrenheit),
@@ -63,12 +61,10 @@ public class TemperatureConverter
             TemperatureScale.Celsius => temperature,
             TemperatureScale.Fahrenheit => 
                 TemperatureValue.Create(
-                    ToCelsiusFromFahrenheit(temperature), 
-                    TemperatureScale.Celsius),
+                    ToCelsiusFromFahrenheit(temperature)),
             TemperatureScale.Kelvin => 
                 TemperatureValue.Create(
-                    ToCelsiusFromKelvin(temperature), 
-                    TemperatureScale.Celsius),
+                    ToCelsiusFromKelvin(temperature)),
             _ => throw TemperatureException.ThrowScaleException(temperature.Scale)
         };
     }
