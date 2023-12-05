@@ -11,10 +11,9 @@ public sealed record TemperatureValue : Temperature
 
     public static Result<TemperatureValue> Create(int temperature = cValue, TemperatureScale scale = cScale, TemperatureRange? range = null)
     {
-        range ??= new();
-
-        if (temperature < range.Minimum || temperature > range.Maximum)
-            return TemperatureException.ThrowValueOutOfRangeException(temperature, range);
+        if(range is not null)
+            if (temperature < range.Minimum || temperature > range.Maximum)
+                return TemperatureException.ThrowValueOutOfRangeException(temperature, range);
 
         return new TemperatureValue(temperature, scale);
     }
