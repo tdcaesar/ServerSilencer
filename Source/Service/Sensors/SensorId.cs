@@ -25,11 +25,9 @@ public class SensorId
     public static explicit operator SensorId(string id) => new(id);
     public static explicit operator SensorId(int id) => new(id);
 
-    public SensorId(string valueInHex)
+    public SensorId(string? valueInHex)
     {
-        if (string.IsNullOrWhiteSpace(valueInHex))
-            throw SensorIdException.ThrowNullException();
-        
+        Ensure.NotNull(valueInHex);
         Value = HexConverter.FromHex(valueInHex);
     }
 

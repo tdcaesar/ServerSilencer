@@ -15,9 +15,27 @@ public class SensorIdTest
     [Theory]
     [InlineData(-10)]
     [InlineData(300)]
-    public void ConstructorIntInvalidTest(int testValue)
+    public void Constructor_Int_Invalid_Test(int testValue)
     {
+        // Arrange
+        SensorId Action() => new(testValue);
+        // Act
+        // Assert
+        FluentActions.Invoking(Action).Should().Throw<SensorIdException>();
         var exception = Assert.Throws<SensorIdException>(() => new SensorId(testValue));
+    }
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    [InlineData(" ")]
+    public void Constructor_Int_Null_Test(string? testValue)
+    {
+        // Arrange
+        SensorId Action() => new(testValue);
+        // Act
+        // Assert
+        FluentActions.Invoking(Action).Should().Throw<ArgumentNullException>()
+            .Which.ParamName.Should().Be("valueInHex");
     }
     
     [Theory]
