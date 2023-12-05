@@ -5,8 +5,8 @@ namespace ServiceUnitTests.Temperature;
 
 public class TemperatureRangeTest
 {
-    private const int DefaultMinimum = -100;
-    private const int DefaultMaximum = 100;
+    private const int cMinimum = -100;
+    private const int cMaximum = 100;
 
     [Fact]
     public void Constructor_Default()
@@ -16,8 +16,8 @@ public class TemperatureRangeTest
         var temperatureRange = new TemperatureRange();
 
         // Assert
-        temperatureRange.Minimum.Should().Be(DefaultMinimum);
-        temperatureRange.Maximum.Should().Be(DefaultMaximum);
+        temperatureRange.Minimum.Should().Be(cMinimum);
+        temperatureRange.Maximum.Should().Be(cMaximum);
     }
     [Theory]
     [InlineData(-100, 100)]

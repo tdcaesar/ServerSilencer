@@ -4,16 +4,16 @@ namespace DigitalCaesar.ServerSilencer.Service.Sensors;
 
 public class SensorId
 {
-    private const int Minimum = 0;
-    private const int Maximum = 255;
+    private const int cMinimum = 0;
+    private const int cMaximum = 255;
     private readonly int _value;
     private int Value
     {
         get => _value;
         init
         {
-            if (value is < Minimum or > Maximum)
-                throw SensorIdException.ThrowOutOfRangeException(value, Minimum, Maximum);
+            if (value is < cMinimum or > cMaximum)
+                throw SensorIdException.ThrowOutOfRangeException(value, cMinimum, cMaximum);
             _value = value;
         }
     }

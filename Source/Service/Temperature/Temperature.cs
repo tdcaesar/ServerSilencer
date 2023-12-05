@@ -2,12 +2,13 @@ namespace DigitalCaesar.ServerSilencer.Service.Temperature;
 
 public record Temperature
 {
-    private const decimal DefaultValue = 0;
-    private const TemperatureScale DefaultScale = TemperatureScale.Celsius;
+    private const decimal cValue = 0;
+    private const TemperatureScale cScale = TemperatureScale.Celsius;
+    private const char cDegreeSymbol = '\u00b0';
     public decimal Value { get; }
     public TemperatureScale Scale { get; }
 
-    protected Temperature(decimal value = DefaultValue, TemperatureScale scale = DefaultScale)
+    protected Temperature(decimal value = cValue, TemperatureScale scale = cScale)
     {
         Scale = scale;
         Value = value;
@@ -15,5 +16,5 @@ public record Temperature
 
     public static implicit operator decimal(Temperature value) => value.Value;
 
-    public override string ToString() => $"{Value}\u00b0{(char)Scale}";
+    public override string ToString() => $"{Value}{cDegreeSymbol}{(char)Scale}";
 }

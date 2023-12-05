@@ -5,8 +5,8 @@ namespace ServiceUnitTests.Temperature;
 
 public class TemperatureValueTest
 {
-    private const TemperatureScale DefaultScale = TemperatureScale.Celsius;
-    private const int DefaultTemperature = 0;
+    private const TemperatureScale cScale = TemperatureScale.Celsius;
+    private const int cTemperature = 0;
 
     [Fact]
     public void ConstructorDefaultTest()
@@ -15,8 +15,8 @@ public class TemperatureValueTest
         result.Successful.Should().BeTrue();
         result.Switch((success) =>
             {
-                success.Scale.Should().Be(DefaultScale);
-                success.Value.Should().Be(DefaultTemperature);
+                success.Scale.Should().Be(cScale);
+                success.Value.Should().Be(cTemperature);
             },
             (failure) => failure.Should().BeNull());
     }
@@ -49,7 +49,7 @@ public class TemperatureValueTest
     [InlineData(TemperatureScale.Kelvin)]
     public void ConstructorScaleTest(TemperatureScale scale)
     {
-        var result = TemperatureValue.Create(DefaultTemperature, scale);
+        var result = TemperatureValue.Create(cTemperature, scale);
         result.Successful.Should().BeTrue();
         result.Switch(
             (success) => success.Scale.Should().Be(scale),
@@ -61,7 +61,7 @@ public class TemperatureValueTest
     [InlineData(TemperatureScale.Kelvin)]
     public void ConstructorScaleInvalidTest(TemperatureScale scale)
     {
-        var result = TemperatureValue.Create(DefaultTemperature, scale);
+        var result = TemperatureValue.Create(cTemperature, scale);
         result.Successful.Should().BeFalse();
         result.Switch(
             (success) => success.Should().BeNull(),

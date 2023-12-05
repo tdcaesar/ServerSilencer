@@ -8,17 +8,17 @@ namespace ServiceUnitTests.Application;
 
 public class ApplicationTest
 {
-    private const string SettingsSection = "ApplicationSettings";
-    private const string SettingsFile = "appsettings.json";
+    private const string cSettingsSection = "ApplicationSettings";
+    private const string cSettingsFile = "appsettings.json";
 
     private ServiceController GetTestApplication()
     {
         var config = new ConfigurationBuilder()
             .SetBasePath(AppContext.BaseDirectory)
-            .AddJsonFile(SettingsFile, false, true)
+            .AddJsonFile(cSettingsFile, false, true)
             .Build();
 
-        config.GetSection(SettingsSection);
+        config.GetSection(cSettingsSection);
         
         return new(
             new Logger<ServiceController>(new NullLoggerFactory()), 
@@ -31,10 +31,10 @@ public class ApplicationTest
         // Arrange
         var config = new ConfigurationBuilder()
             .SetBasePath(AppContext.BaseDirectory)
-            .AddJsonFile(SettingsFile, false, true)
+            .AddJsonFile(cSettingsFile, false, true)
             .Build();
 
-        config.GetSection(SettingsSection);
+        config.GetSection(cSettingsSection);
         
         // Act
         ServiceController service = new(

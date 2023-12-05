@@ -5,9 +5,9 @@ namespace DigitalCaesar.ServerSilencer.Service.Application;
 
 public class ApplicationSettings
 {
-    private const int DefaultPollingIntervalInSeconds = 60;
+    private const int cPollingIntervalInSeconds = 60;
 
-    public int PollingIntervalInSeconds { get; set;  } = DefaultPollingIntervalInSeconds;
+    public int PollingIntervalInSeconds { get; set;  } = cPollingIntervalInSeconds;
 
     public TemperatureSensorPackageSettings TemperatureSensors { get; set; } = new ();
     public IpmiCommandSettings IpmiCommand { get; set; } = new();

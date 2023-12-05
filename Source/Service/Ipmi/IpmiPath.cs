@@ -2,8 +2,8 @@ namespace DigitalCaesar.ServerSilencer.Service.Ipmi;
 
 public class IpmiPath
 {
-    private const string DefaultLinuxPath = "/usr/bin/ipmitool";
-    private const string DefaultWindowsPath = @"C:\Program Files (x86)\Dell\SysMgt\bmc\ipmitool.exe";
+    private const string cLinuxPath = "/usr/bin/ipmitool";
+    private const string cWindowsPath = @"C:\Program Files (x86)\Dell\SysMgt\bmc\ipmitool.exe";
     private string Value { get; }
 
     public IpmiPath(IpmiToolSettings settings)
@@ -11,8 +11,8 @@ public class IpmiPath
         Value = string.IsNullOrWhiteSpace(settings.Path)
             ? settings.Platform switch
             {
-                Platform.Linux => DefaultLinuxPath,
-                Platform.Windows => DefaultWindowsPath,
+                Platform.Linux => cLinuxPath,
+                Platform.Windows => cWindowsPath,
                 _ => throw new PlatformNotSupportedException(
                     $"The platform {settings.Platform} is not supported.  Only Windows and Linux are supported.")
             }

@@ -6,9 +6,9 @@ namespace ServiceUnitTests.Application;
 
 public class ApplicationSettingsTest
 {
-    private const string SettingsFileName = "appsettings.json";
-    private const string SettingsRootSectionName = "ApplicationSettings";
-    private const int DefaultPollingInterval = 60;
+    private const string cSettingsFileName = "appsettings.json";
+    private const string cSettingsRootSectionName = "ApplicationSettings";
+    private const int cPollingInterval = 60;
 
     [Fact]
     public void LoadSettings()
@@ -16,9 +16,9 @@ public class ApplicationSettingsTest
         ApplicationSettings settings = new();
         var config = new ConfigurationBuilder()
             .SetBasePath(AppContext.BaseDirectory)
-            .AddJsonFile(SettingsFileName, false, true)
+            .AddJsonFile(cSettingsFileName, false, true)
             .Build()
-            .GetSection(SettingsRootSectionName);  
+            .GetSection(cSettingsRootSectionName);  
         config.Bind(settings);
         settings.PollingIntervalInSeconds.Should().Be(60);
         settings.TemperatureSensors.Inlet.Ids.Count.Should().Be(1);
@@ -30,7 +30,7 @@ public class ApplicationSettingsTest
     public void PollingIntervalDefault()
     {
         ApplicationSettings testSettings = new();
-        testSettings.PollingIntervalInSeconds.Should().Be(DefaultPollingInterval);
+        testSettings.PollingIntervalInSeconds.Should().Be(cPollingInterval);
     }
 
     [Theory]

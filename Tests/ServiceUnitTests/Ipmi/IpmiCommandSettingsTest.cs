@@ -6,8 +6,8 @@ namespace ServiceUnitTests.Ipmi;
 
 public class IpmiCommandSettingsTest
 {
-    private const string SettingsFileName = "appsettings.json";
-    private const string SettingsRootSectionName = "Ipmi";
+    private const string cSettingsFileName = "appsettings.json";
+    private const string cSettingsRootSectionName = "Ipmi";
     
     [Fact]
     public void ConstructorTest()
@@ -27,9 +27,9 @@ public class IpmiCommandSettingsTest
         IpmiCommandSettings testObject = new();
         var config = new ConfigurationBuilder()
             .SetBasePath(AppContext.BaseDirectory)
-            .AddJsonFile(SettingsFileName, false, true)
+            .AddJsonFile(cSettingsFileName, false, true)
             .Build()
-            .GetSection(SettingsRootSectionName);  
+            .GetSection(cSettingsRootSectionName);  
         config.Bind(testObject);
         testObject.Should().NotBeNull();
         testObject.Connection.Should().NotBeNull();
