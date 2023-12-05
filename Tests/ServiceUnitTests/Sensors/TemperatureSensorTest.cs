@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices.ComTypes;
 using DigitalCaesar.ServerSilencer.Service.Sensors;
 using FluentAssertions;
 
@@ -33,7 +34,12 @@ public class TemperatureSensorTest
     [MemberData(nameof(InvalidTemperatureSettings))]
     public void ConstructorInvalidTest(TemperatureSensorSettings settings)
     {
-        Assert.Throws<TemperatureSensorException>(() => new TemperatureSensor(settings));
+        // Arrange
+        TemperatureSensor Action() => new(settings);
+        // Act
+        // Assert
+        FluentActions.Invoking(Action).Should().Throw<TemperatureSensorException>();
+        //Assert.Throws<TemperatureSensorException>(() => new TemperatureSensor(settings));
     }
 
     [Theory]
