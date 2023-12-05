@@ -1,5 +1,3 @@
-using System.Diagnostics;
-
 namespace DigitalCaesar.ServerSilencer.Service.Ipmi;
 
 public class IpmiPath

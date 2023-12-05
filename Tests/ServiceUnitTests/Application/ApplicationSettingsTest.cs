@@ -1,4 +1,3 @@
-using DigitalCaesar.ServerSilencer.Service;
 using DigitalCaesar.ServerSilencer.Service.Application;
 using FluentAssertions;
 using Microsoft.Extensions.Configuration;

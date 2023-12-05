@@ -52,12 +52,12 @@ public class TemperatureConverterTest
     public void Method_FromCelsius_ToCelsius(int fromValue, int expectedValue)
     {
         // Arrange
-        var temperature = TemperatureValue.Create(fromValue, TemperatureScale.Celsius);
+        var temperature = TemperatureValue.Create(fromValue);
         
         // Act
         var result = temperature.Match(
             TemperatureConverter.ToCelsius,
-            (errors) => null!);
+            _ => null!);
 
         // Assert
         result.Successful.Should().BeTrue();
@@ -76,7 +76,7 @@ public class TemperatureConverterTest
         // Act
         var result = temperature.Match(
             TemperatureConverter.ToFahrenheit,
-            (errors) => null!);
+            _ => null!);
 
         // Assert
         result.Successful.Should().BeTrue();
@@ -95,7 +95,7 @@ public class TemperatureConverterTest
         // Act
         var result = temperature.Match(
             TemperatureConverter.ToKelvin,
-            (errors) => null!);
+            _ => null!);
 
         // Assert
         result.Successful.Should().BeTrue();
@@ -109,12 +109,12 @@ public class TemperatureConverterTest
     public void Method_FromCelsius_ToFahrenheit(int fromValue, int expectedValue)
     {
         // Arrange
-        var temperature = TemperatureValue.Create(fromValue, TemperatureScale.Celsius);
+        var temperature = TemperatureValue.Create(fromValue);
 
         // Act
         var result = temperature.Match(
             TemperatureConverter.ToFahrenheit,
-            (errors) => null!);
+            _ => null!);
 
         // Assert
         result.Successful.Should().BeTrue();
@@ -133,7 +133,7 @@ public class TemperatureConverterTest
         // Act
         var result = temperature.Match(
             TemperatureConverter.ToCelsius,
-            (errors) => null!);
+            _ => null!);
 
         // Assert
         result.Successful.Should().BeTrue();
@@ -148,12 +148,12 @@ public class TemperatureConverterTest
     public void Method_FromCelsius_ToKelvin(int fromValue, int expectedValue)
     {
         // Arrange
-        var temperature = TemperatureValue.Create(fromValue, TemperatureScale.Celsius);
+        var temperature = TemperatureValue.Create(fromValue);
 
         // Act
         var result = temperature.Match(
             TemperatureConverter.ToKelvin,
-            (errors) => null!);
+            _ => null!);
 
         // Assert
         result.Successful.Should().BeTrue();
@@ -173,7 +173,7 @@ public class TemperatureConverterTest
         // Act
         var result = temperature.Match(
             TemperatureConverter.ToCelsius,
-            (errors) => null!);
+            _ => null!);
 
         // Assert
         result.Successful.Should().BeTrue();
@@ -194,7 +194,7 @@ public class TemperatureConverterTest
         // Act
         var result = temperature.Match(
             TemperatureConverter.ToKelvin,
-            (errors) => null!);
+            _ => null!);
 
         // Assert
         result.Successful.Should().BeTrue();
@@ -214,7 +214,7 @@ public class TemperatureConverterTest
         // Act
         var result = temperature.Match(
             TemperatureConverter.ToFahrenheit,
-            (errors) => null!);
+            _ => null!);
 
         // Assert
         result.Successful.Should().BeTrue();

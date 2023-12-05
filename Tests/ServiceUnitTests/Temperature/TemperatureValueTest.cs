@@ -1,5 +1,4 @@
-﻿using DigitalCaesar.Results;
-using DigitalCaesar.ServerSilencer.Service.Temperature;
+﻿using DigitalCaesar.ServerSilencer.Service.Temperature;
 using FluentAssertions;
 
 namespace ServiceUnitTests.Temperature;
@@ -80,7 +79,7 @@ public class TemperatureValueTest
         var result = TemperatureValue.Create(value);
         int resultValue = result.Match(
             (success) => success,
-            failure => -10000);
+            _ => -10000);
         resultValue.Should().Be(value);
     }
 
@@ -105,13 +104,12 @@ public class TemperatureValueTest
     [InlineData(-100, TemperatureScale.Fahrenheit, "-100°F")]
     [InlineData(0, TemperatureScale.Kelvin, "0°K")]
     [InlineData(546, TemperatureScale.Kelvin, "546°K")]
-    [InlineData(0, TemperatureScale.Kelvin, "0°K")]
     public void MethodToStringTest(int value, TemperatureScale scale, string expectedValue)
     {
         var result = TemperatureValue.Create(value, scale);
         string resultValue = result.Match(
             (success) => success.ToString(),
-            failure => "");
-        resultValue.ToString().Should().Be(expectedValue);
+            _ => "");
+        resultValue.Should().Be(expectedValue);
     }
 }

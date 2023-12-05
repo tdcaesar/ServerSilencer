@@ -1,7 +1,5 @@
 using DigitalCaesar.ServerSilencer.Service.Ipmi;
 using FluentAssertions;
-using Microsoft.Extensions.Hosting;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 
 namespace ServiceUnitTests.Ipmi;
 

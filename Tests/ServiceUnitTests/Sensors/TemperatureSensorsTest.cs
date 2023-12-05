@@ -12,9 +12,9 @@ public class TemperatureSensorsTest
             {
                 new TemperatureSensorPackageSettings()
                 {
-                    Cpu = new TemperatureSensorSettings(new string[] { "00" }, 0, 10),
-                    Inlet = new TemperatureSensorSettings(new string[] { "00" }, 0, 10),
-                    Exhaust = new TemperatureSensorSettings(new string[] { "00" }, 0, 10)
+                    Cpu = new TemperatureSensorSettings(new[] { "00" }, 0, 10),
+                    Inlet = new TemperatureSensorSettings(new[] { "00" }, 0, 10),
+                    Exhaust = new TemperatureSensorSettings(new[] { "00" }, 0, 10)
                 }
             }
         };

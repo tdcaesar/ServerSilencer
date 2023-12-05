@@ -8,12 +8,12 @@ public class TemperatureSensorTest
     public static IEnumerable<object[]> ValidTemperatureSettings =>
         new List<object[]>
         {
-            new object[] { new TemperatureSensorSettings(new string[] { "00" }, 0, 10) }
+            new object[] { new TemperatureSensorSettings(new[] { "00" }, 0, 10) }
         };
     public static IEnumerable<object[]> InvalidTemperatureSettings =>
         new List<object[]>
         {
-            new object[] { new TemperatureSensorSettings(new string[] { "00" }, 10, 0) }
+            new object[] { new TemperatureSensorSettings(new[] { "00" }, 10, 0) }
         };
     public static IEnumerable<object[]> NullTemperatureSettings =>
         new List<object[]>
@@ -27,6 +27,7 @@ public class TemperatureSensorTest
     public void ConstructorTest(TemperatureSensorSettings settings)
     {
         TemperatureSensor testObject = new(settings);
+        testObject.Should().NotBeNull();
     }
     [Theory]
     [MemberData(nameof(InvalidTemperatureSettings))]

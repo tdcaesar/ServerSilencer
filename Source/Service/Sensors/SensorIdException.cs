@@ -25,7 +25,7 @@ public class SensorIdException : Exception
 
     public static SensorIdException ThrowNullException()    
     {
-        string message = string.Format($"The Sensor Id cannot be null or empty.");
+        string message = "The Sensor Id cannot be null or empty.";
         return new SensorIdException(message);
     }
 }

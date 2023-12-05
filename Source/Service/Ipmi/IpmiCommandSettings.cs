@@ -1,5 +1,3 @@
-using System.Security.Cryptography.X509Certificates;
-
 namespace DigitalCaesar.ServerSilencer.Service.Ipmi;
 
 public class IpmiCommandSettings

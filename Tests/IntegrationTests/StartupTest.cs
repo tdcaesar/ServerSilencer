@@ -1,4 +1,3 @@
-using DigitalCaesar.ServerSilencer.Service;
 using DigitalCaesar.ServerSilencer.Service.Application;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -10,7 +9,7 @@ public class StartupTest
     [Fact]
     public void TestConfig()
     {
-        IHost host = Host.CreateDefaultBuilder()
+        Host.CreateDefaultBuilder()
             .ConfigureServices(
                 (hostContext, services) =>
                 {
