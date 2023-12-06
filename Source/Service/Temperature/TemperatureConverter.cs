@@ -1,7 +1,6 @@
-﻿using DigitalCaesar.ServerSilencer.Service.Temperature;
-using DigitalCaesar.Results;
+﻿using DigitalCaesar.Results;
 
-namespace DigitalCaesar.ServerSilencer.Service.Converters;
+namespace DigitalCaesar.ServerSilencer.Service.Temperature;
 
 public static class TemperatureConverter
 {

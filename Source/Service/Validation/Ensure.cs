@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
-namespace DigitalCaesar.ServerSilencer.Service.Sensors;
+namespace DigitalCaesar.ServerSilencer.Service.Validation;
 
 public static class Ensure
 {

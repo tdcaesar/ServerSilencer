@@ -1,4 +1,5 @@
 using DigitalCaesar.ServerSilencer.Service.Converters;
+using DigitalCaesar.ServerSilencer.Service.Validation;
 
 namespace DigitalCaesar.ServerSilencer.Service.Sensors;
 

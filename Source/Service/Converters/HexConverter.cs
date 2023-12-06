@@ -1,5 +1,45 @@
 namespace DigitalCaesar.ServerSilencer.Service.Converters;
 
+public record HexValue
+{
+    private const string cDefaultFormat = "{Value:X}";
+    private string ValueFormat { get; } = cDefaultFormat; 
+    private int Value { get; }
+
+    protected HexValue(int value, string valueFormat)
+    {
+        Value = value;
+        ValueFormat = valueFormat;
+    }
+    
+    public HexValue(int value)
+    {
+        Value = value;
+        ValueFormat = cDefaultFormat;
+    }
+    public static implicit operator int(HexValue id) => id.Value;
+
+    public override string ToString()
+    {
+        return string.Format(ValueFormat);
+    }
+}
+
+public sealed record RequestIdValue : HexValue
+{
+    private const string cDefaultFormat = "{Value:X2}h";
+    public RequestIdValue(int value) : base(value, cDefaultFormat)
+    {
+    }
+}
+public sealed record CommandIdValue : HexValue
+{
+    private const string cDefaultFormat = "0x{Value:X2}";
+    public CommandIdValue(int value): base(value, cDefaultFormat)
+    {
+    }
+}
+
 public class HexConverter
 {
     public static int FromHex(string value)
