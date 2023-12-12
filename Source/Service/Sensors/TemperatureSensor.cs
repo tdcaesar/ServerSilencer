@@ -12,7 +12,7 @@ public class TemperatureSensor
         Ids = new();
         foreach (string inletId in settings.Ids)
         {
-            SensorId currentId = new(inletId);
+            SensorId currentId = SensorId.Create(inletId);
             Ids.Add(currentId);
         }
 

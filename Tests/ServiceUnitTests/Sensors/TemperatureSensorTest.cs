@@ -9,12 +9,12 @@ public class TemperatureSensorTest
     public static IEnumerable<object[]> ValidTemperatureSettings =>
         new List<object[]>
         {
-            new object[] { new TemperatureSensorSettings(new[] { "00" }, 0, 10) }
+            new object[] { new TemperatureSensorSettings(new[] { "00h" }, 0, 10) }
         };
     public static IEnumerable<object[]> InvalidTemperatureSettings =>
         new List<object[]>
         {
-            new object[] { new TemperatureSensorSettings(new[] { "00" }, 10, 0) }
+            new object[] { new TemperatureSensorSettings(new[] { "00h" }, 10, 0) }
         };
     public static IEnumerable<object[]> NullTemperatureSettings =>
         new List<object[]>

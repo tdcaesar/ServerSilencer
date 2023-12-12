@@ -1,5 +1,4 @@
-﻿using DigitalCaesar.ServerSilencer.Service.Converters;
-using DigitalCaesar.ServerSilencer.Service.Temperature;
+﻿using DigitalCaesar.ServerSilencer.Service.Temperature;
 using FluentAssertions;
 
 namespace ServiceUnitTests.Converters;

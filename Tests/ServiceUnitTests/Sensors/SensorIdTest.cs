@@ -6,23 +6,25 @@ namespace ServiceUnitTests.Sensors;
 public class SensorIdTest
 {
     [Theory]
-    [InlineData(0)]
-    [InlineData(255)]
-    public void ConstructorIntTest(int testValue)
+    [InlineData("00h")]
+    [InlineData("FFh")]
+    public void Constructor_Create_Int_Valid_Test(string testValue)
     {
-        SensorId testObject = new(testValue);
+        SensorId testObject = SensorId.Create(testValue);
     }
     [Theory]
-    [InlineData(-10)]
-    [InlineData(300)]
-    public void Constructor_Int_Invalid_Test(int testValue)
+    [InlineData("00")]
+    [InlineData("0h")]
+    [InlineData("Fh")]
+    [InlineData("0xFF")]
+    [InlineData("FFF")]
+    public void Constructor_Int_Invalid_Test(string testValue)
     {
         // Arrange
-        SensorId Action() => new(testValue);
+        SensorId Action() => SensorId.Create(testValue);
         // Act
         // Assert
-        FluentActions.Invoking(Action).Should().Throw<SensorIdException>();
-        var exception = Assert.Throws<SensorIdException>(() => new SensorId(testValue));
+        FluentActions.Invoking(Action).Should().Throw<ArgumentException>();
     }
     [Theory]
     [InlineData(null)]
@@ -31,50 +33,50 @@ public class SensorIdTest
     public void Constructor_Int_Null_Test(string? testValue)
     {
         // Arrange
-        SensorId Action() => new(testValue);
+        SensorId Action() => SensorId.Create(testValue);
         // Act
         // Assert
         FluentActions.Invoking(Action).Should().Throw<ArgumentNullException>()
-            .Which.ParamName.Should().Be("valueInHex");
+            .Which.ParamName.Should().Be("valueString");
     }
     
-    [Theory]
-    [InlineData("00")]
-    [InlineData("00h")]
-    [InlineData("0x00")]
-    [InlineData("FF")]
-    [InlineData("FFh")]
-    [InlineData("0xFF")]
-    public void ConstructorStringTest(string testValue)
-    {
-        SensorId testObject = new(testValue);
-    }
 
     [Theory]
-    [InlineData(0,"00h")]
-    [InlineData(255,"FFh")]
-    public void ImplicitOperatorTest(int testValue, string expectedResult)
+    [InlineData("00h","00h")]
+    [InlineData("FFh","FFh")]
+    public void Method_ImplicitOperator_ToString_Test(string testValue, string expectedResult)
     {
-        SensorId testObject = new(testValue);
+        SensorId testObject = SensorId.Create(testValue);
         string result = testObject;
+        result.Should().Be(expectedResult);
+    }
+    [Theory]
+    [InlineData("00h",0)]
+    [InlineData("FFh",255)]
+    public void Method_ImplicitOperator_ToInt_Test(string testValue, int expectedResult)
+    {
+        SensorId testObject = SensorId.Create(testValue);
+        int result = testObject;
         result.Should().Be(expectedResult);
     }
     [Theory]
     [InlineData(0,0)]
     [InlineData(255,255)]
-    public void ExplicitOperatorIntTest(int testValue, int expectedResult)
+    public void Method_ExplicitOperator_Int_Test(int testValue, int expectedResult)
     {
         SensorId testObject = (SensorId)testValue;
-        int result = testObject;
+        int result = (int)testObject;
         result.Should().Be(expectedResult);
     }
     [Theory]
-    [InlineData("00","00h")]
-    [InlineData("FF","FFh")]
-    public void ExplicitOperatorStringTest(string testValue, string expectedResult)
+    [InlineData("00h","00h")]
+    [InlineData("FFh","FFh")]
+    public void Method_ExplicitOperator_String_Test(string testValue, string expectedResult)
     {
+        // Arrange
+        // Act
         SensorId testObject = (SensorId)testValue;
-        string result = testObject;
-        result.Should().Be(expectedResult);
+        // Assert
+        testObject.ToString().Should().Be(expectedResult);
     }
 }
